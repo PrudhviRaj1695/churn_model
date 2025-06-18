@@ -6,7 +6,11 @@ import pandas as pd
 app = FastAPI(title="Insurance Churn Predictor", version="1.0")
 
 # Load model
-model = joblib.load(r"C:\Users\prudh\OneDrive\Desktop\RAG\Churn_Api\Churn_Model_Pickle.pkl")
+# Use a model path relative to this file to avoid relying on a hard-coded
+# absolute path which will not exist in other environments.
+import os
+model_path = os.path.join(os.path.dirname(__file__), "Churn_Model_Pickle.pkl")
+model = joblib.load(model_path)
 
 
 # Define input structure
